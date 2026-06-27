@@ -5,6 +5,9 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Configuration
@@ -39,7 +42,13 @@ public class AppProperties {
     @Getter
     @Setter
     public static class Seed {
-        private String adminEmail;
-        private String adminPassword;
+        private List<AdminAccount> admins = new ArrayList<>();
+    }
+
+    @Getter
+    @Setter
+    public static class AdminAccount {
+        private String email;
+        private String password;
     }
 }

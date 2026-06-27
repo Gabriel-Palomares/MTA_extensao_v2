@@ -1,22 +1,18 @@
-# Perfil de desenvolvimento — IntelliJ / local / TiDB Cloud
-# Cria/atualiza tabelas automaticamente (ddl-auto: update)
-# Configure variáveis em backend/.env ou Run Configuration do IntelliJ
+# Perfil dev — IntelliJ / local / TiDB Cloud
+# ddl-auto: update cria/atualiza as tabelas automaticamente no cluster
 
 spring:
+  config:
+    import: optional:classpath:application-admins.yml
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: ${DB_SHOW_SQL:false}
+    show-sql: true
     properties:
       hibernate:
-        format_sql: ${DB_SHOW_SQL:false}
+        format_sql: true
 
 logging:
   level:
     com.projetomta: INFO
-    org.hibernate.SQL: ${DB_LOG_SQL:WARN}
-
-app:
-  seed:
-    admin-email: ${SEED_ADMIN_EMAIL:admin@mta.local}
-    admin-password: ${SEED_ADMIN_PASSWORD:admin123}
+    org.hibernate.SQL: DEBUG

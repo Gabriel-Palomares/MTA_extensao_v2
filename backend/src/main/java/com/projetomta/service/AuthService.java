@@ -4,7 +4,6 @@ import com.projetomta.domain.entity.Usuario;
 import com.projetomta.domain.enums.Perfil;
 import com.projetomta.dto.LoginRequest;
 import com.projetomta.dto.LoginResponse;
-import com.projetomta.dto.RecuperarSenhaRequest;
 import com.projetomta.exception.ContaBloqueadaException;
 import com.projetomta.exception.CredenciaisInvalidasException;
 import com.projetomta.repository.UsuarioRepository;
@@ -57,17 +56,20 @@ public class AuthService {
                 .build();
     }
 
-    public void solicitarRecuperacaoSenha(RecuperarSenhaRequest request) {
-        // Placeholder: integração de e-mail será implementada na Etapa 6 (front-end).
-        usuarioRepository.findByEmail(request.getEmail().trim().toLowerCase());
-    }
-
     private void validarContaBloqueada(Usuario usuario) {
         if (usuario.isBloqueado()) {
             throw new ContaBloqueadaException(usuario.getBloqueadoAte());
         }
 
         loginAttemptRecorder.desbloquearSeExpirado(usuario.getId());
+    }
+
+    @Transactional(readOnly = true)
+    public boolean existeUsuario(String email) {
+        if (email == null || email.isBlank()) {
+            return false;
+        }
+        return usuarioRepository.existsByEmail(email.trim().toLowerCase());
     }
 
     @Transactional

@@ -8,7 +8,6 @@ com\projetomta\domain\enums\PrioridadeAviso.class
 com\projetomta\exception\RecursoNaoEncontradoException.class
 com\projetomta\controller\AvisoController.class
 com\projetomta\dto\EscalaResponse.class
-com\projetomta\dto\RecuperarSenhaRequest.class
 com\projetomta\domain\entity\Escala$EscalaBuilder.class
 com\projetomta\exception\ConflitoHorarioException.class
 com\projetomta\exception\GlobalExceptionHandler.class
@@ -36,6 +35,7 @@ com\projetomta\dto\MembroResponse.class
 com\projetomta\controller\AuthController.class
 com\projetomta\repository\AvisoRepository.class
 com\projetomta\config\AdminSeedRunner.class
+com\projetomta\config\AppProperties$AdminAccount.class
 com\projetomta\config\AppProperties.class
 com\projetomta\dto\EscalaResponse$EscalaResponseBuilder.class
 com\projetomta\service\AuthService.class
